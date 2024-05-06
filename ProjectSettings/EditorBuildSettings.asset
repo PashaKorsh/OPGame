@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/MainMenuScene.unity
+    guid: 553e6b867818d094bb42ce25b0d13d09
+  - enabled: 1
+    path: Assets/Scenes/PowerPointScene.unity
+    guid: 2558ba7359340d24cb03a92bf8cd94a6
+  - enabled: 1
+    path: Assets/Scenes/TestScene.unity
+    guid: d27cd784cd0f135448fd6a8a945fd648
   m_configObjects: {}
