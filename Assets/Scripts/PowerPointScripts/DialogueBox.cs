@@ -22,6 +22,7 @@ public class DialogueBox : MonoBehaviour
         return false;
     }
 
+
     public void Write(string message)
     {
         textMesh.text = message;
