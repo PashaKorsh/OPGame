@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class PictureHandler : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public SpriteRenderer spriteRenderer;
 
-    // Update is called once per frame
-    void Update()
+    public void UpdatePicture(Sprite sprite)
     {
-        
+        spriteRenderer.sprite = sprite;
     }
 }
