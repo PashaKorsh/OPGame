@@ -12,20 +12,28 @@ public class DialogueHandler : MonoBehaviour
 
     private int dialogueCounter = 0;
     private bool _pressedSpace = false;
-    private List<(string Phrase, Sprite Picture)> dialogue = new();
+    private List<(string Phrase, string Picture)> dialogue = new();
 
     void Start()
     {
         ReadDialogue("text.txt");
+        dialogueBox.Write(dialogue[dialogueCounter].Phrase);
+        pictureHandler.UpdatePicture(GetSprite(dialogue[dialogueCounter++].Picture));
+    }
+
+    private Sprite GetSprite(string filename)
+    {
+        var texture2D = Resources.Load<Texture2D>(filename);
+        return Sprite.Create(texture2D, new Rect(0.0f, 0.0f, texture2D.width, texture2D.height), new Vector2(0.5f, 0.5f));
     }
 
     private void ReadDialogue(string filename)
     {
         dialogue = System.Text.Encoding.Default.GetString(File.ReadAllBytes(".\\Assets\\Dialogues\\" + filename))
-            .Split("|").Select(x => {
-                Debug.Log(x.Split("\\")[1]);
-                return (x.Split("\\")[0], Resources.Load<Sprite>(x.Split("\\")[1]));
-            }).ToList();
+            .Split("|")
+            .Select(x => (x.Split("\\")[0], x.Split("\\")[1]))
+            .ToList();
+        
     }
 
     void Update()
@@ -38,7 +46,7 @@ public class DialogueHandler : MonoBehaviour
                 return;
             }
             dialogueBox.Write(dialogue[dialogueCounter].Phrase);
-            pictureHandler.UpdatePicture(dialogue[dialogueCounter++].Picture);
+            pictureHandler.UpdatePicture(GetSprite(dialogue[dialogueCounter++].Picture));
             _pressedSpace = true;
         }
         else
