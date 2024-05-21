@@ -108,6 +108,7 @@ GameObject:
   - component: {fileID: 352402853648982640}
   - component: {fileID: 4282165253333175914}
   - component: {fileID: -7278841564210849536}
+  - component: {fileID: 2121872866596122859}
   m_Layer: 0
   m_Name: knopka
   m_TagString: Untagged
@@ -204,3 +205,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4, y: 1, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2121872866596122859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9142030213761008145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c696540a1c890e4a9c0c5803168ee3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  main: {fileID: 0}
+  index: 0

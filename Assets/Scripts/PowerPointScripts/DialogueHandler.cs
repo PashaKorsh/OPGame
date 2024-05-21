@@ -16,7 +16,7 @@ public class DialogueHandler : MonoBehaviour
 
     void Start()
     {
-        ReadDialogue("text.txt");
+        ReadDialogue("text");
         dialogueBox.Write(dialogue[dialogueCounter].Phrase);
         pictureHandler.UpdatePicture(GetSprite(dialogue[dialogueCounter++].Picture));
     }
@@ -29,7 +29,8 @@ public class DialogueHandler : MonoBehaviour
 
     private void ReadDialogue(string filename)
     {
-        dialogue = System.Text.Encoding.Default.GetString(File.ReadAllBytes(".\\Assets\\Dialogues\\" + filename))
+        dialogue = Resources.Load<TextAsset>(filename)
+            .text
             .Split("|")
             .Select(x => (x.Split("\\")[0], x.Split("\\")[1]))
             .ToList();
@@ -42,7 +43,7 @@ public class DialogueHandler : MonoBehaviour
         {
             if (dialogueCounter == dialogue.Count)
             {
-                SceneManager.LoadScene("TestScene");
+                SceneManager.LoadScene("SubwaySurfGame");
                 return;
             }
             dialogueBox.Write(dialogue[dialogueCounter].Phrase);

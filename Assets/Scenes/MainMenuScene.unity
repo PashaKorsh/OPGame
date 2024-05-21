@@ -218,6 +218,7 @@ GameObject:
   - component: {fileID: 563816904}
   - component: {fileID: 563816903}
   - component: {fileID: 563816902}
+  - component: {fileID: 563816905}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -302,6 +303,19 @@ Transform:
   - {fileID: 763270549}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &563816905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 563816901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b2441ea1bef6ec4abd651d890024a4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fader: {fileID: 0}
 --- !u!4 &763270549 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 352402853648982640, guid: 76bcfad85fddbcb4faa345fbbf23a5b5, type: 3}
@@ -367,6 +381,14 @@ PrefabInstance:
       propertyPath: m_CharacterSize
       value: 0.06
       objectReference: {fileID: 0}
+    - target: {fileID: 2121872866596122859, guid: 76bcfad85fddbcb4faa345fbbf23a5b5, type: 3}
+      propertyPath: main
+      value: 
+      objectReference: {fileID: 563816905}
+    - target: {fileID: 2121872866596122859, guid: 76bcfad85fddbcb4faa345fbbf23a5b5, type: 3}
+      propertyPath: index
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9142030213761008145, guid: 76bcfad85fddbcb4faa345fbbf23a5b5, type: 3}
       propertyPath: m_Name
       value: knopkaEnd
@@ -376,28 +398,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76bcfad85fddbcb4faa345fbbf23a5b5, type: 3}
---- !u!1 &1716033331 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9142030213761008145, guid: 76bcfad85fddbcb4faa345fbbf23a5b5, type: 3}
-  m_PrefabInstance: {fileID: 2075081911}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1716033332 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 352402853648982640, guid: 76bcfad85fddbcb4faa345fbbf23a5b5, type: 3}
   m_PrefabInstance: {fileID: 2075081911}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1716033333
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1716033331}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a5a4e3edadc97b48ab9260117bcc035, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2075081911
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -458,6 +463,10 @@ PrefabInstance:
       propertyPath: m_CharacterSize
       value: 0.06
       objectReference: {fileID: 0}
+    - target: {fileID: 2121872866596122859, guid: 76bcfad85fddbcb4faa345fbbf23a5b5, type: 3}
+      propertyPath: main
+      value: 
+      objectReference: {fileID: 563816905}
     - target: {fileID: 9142030213761008145, guid: 76bcfad85fddbcb4faa345fbbf23a5b5, type: 3}
       propertyPath: m_Name
       value: knopkaStart
@@ -465,10 +474,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 9142030213761008145, guid: 76bcfad85fddbcb4faa345fbbf23a5b5, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1716033333}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76bcfad85fddbcb4faa345fbbf23a5b5, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

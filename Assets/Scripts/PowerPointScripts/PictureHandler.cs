@@ -10,6 +10,6 @@ public class PictureHandler : MonoBehaviour
     public void UpdatePicture(Sprite sprite)
     {
         spriteRenderer.sprite = sprite;
-        picturePlaceholder.transform.localScale = new Vector3(2 * Screen.width / sprite.rect.width, 2 * Screen.height / sprite.rect.height, 1);
+        picturePlaceholder.transform.localScale = new Vector3(Screen.width / sprite.rect.width, Screen.height / sprite.rect.height, 1);
     }
 }
