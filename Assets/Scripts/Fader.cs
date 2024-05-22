@@ -1,11 +1,18 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Fader : MonoBehaviour
 {
     public float fadeSpeed = 1f;
 
-    void Fade()
+    void Start()
+    {
+        transform.localScale = new Vector3(Screen.width / 64, Screen.height / 64, 1);
+    }
+
+    public IEnumerator Fade(string sceneName = "")
     {
         var image = GetComponent<SpriteRenderer>();
         var color = image.color;
@@ -13,10 +20,13 @@ public class Fader : MonoBehaviour
         {
             color.a += fadeSpeed * Time.deltaTime;
             image.color = color;
+            yield return null;
         }
+        if (sceneName != "")
+            SceneManager.LoadScene(sceneName);
     }
 
-    void UnFade()
+    public IEnumerator UnFade()
     {
         var image = GetComponent<SpriteRenderer>();
         var color = image.color;
@@ -24,6 +34,7 @@ public class Fader : MonoBehaviour
         {
             color.a -= fadeSpeed * Time.deltaTime;
             image.color = color;
+            yield return null;
         }
     }
 }

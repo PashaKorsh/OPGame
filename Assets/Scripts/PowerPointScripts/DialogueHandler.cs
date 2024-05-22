@@ -9,6 +9,7 @@ public class DialogueHandler : MonoBehaviour
 {
     public DialogueBox dialogueBox;
     public PictureHandler pictureHandler;
+    public Fader fader;
 
     private int dialogueCounter = 0;
     private bool _pressedSpace = false;
@@ -16,6 +17,7 @@ public class DialogueHandler : MonoBehaviour
 
     void Start()
     {
+        StartCoroutine(fader.UnFade());
         ReadDialogue("text");
         dialogueBox.Write(dialogue[dialogueCounter].Phrase);
         pictureHandler.UpdatePicture(GetSprite(dialogue[dialogueCounter++].Picture));
@@ -43,7 +45,7 @@ public class DialogueHandler : MonoBehaviour
         {
             if (dialogueCounter == dialogue.Count)
             {
-                SceneManager.LoadScene("SubwaySurfGame");
+                StartCoroutine(fader.Fade("SubwaySurfGame"));
                 return;
             }
             dialogueBox.Write(dialogue[dialogueCounter].Phrase);

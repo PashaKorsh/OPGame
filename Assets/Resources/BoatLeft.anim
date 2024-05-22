@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Boat_Left
+  m_Name: BoatLeft
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -22,9 +22,9 @@ AnimationClip:
     curve:
     - time: 0
       value: {fileID: -240076294, guid: 2579f04f894bc88469a158fee4e39195, type: 3}
-    - time: 0.35
+    - time: 0.31666666
       value: {fileID: -237268387, guid: 2579f04f894bc88469a158fee4e39195, type: 3}
-    - time: 0.76666665
+    - time: 0.65
       value: {fileID: -240076294, guid: 2579f04f894bc88469a158fee4e39195, type: 3}
     attribute: m_Sprite
     path: 
@@ -56,7 +56,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.7833333
+    m_StopTime: 0.6666666
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

@@ -6,24 +6,12 @@ public class SubwayPlayer : MonoBehaviour
 {
     public Rigidbody2D rb2d;
     public BoxCollider2D boxCollider2D;
-    // public Transform transform;
-    
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        // GetComponent<Animation>().Play("New Animation");
-        // transform.position = new Vector3(0f,0f,0f);
-        // GetComponent<Animator>().Play("Base Layer.Entry");
-    }
+    public Animator animator;
 
     void FixedUpdate()
     {
-        rb2d.AddForce(new Vector3(Input.GetAxis("Horizontal")*50,0f,0f));
+        rb2d.AddForce(new Vector3(Input.GetAxis("Horizontal") * 50, 0f, 0f));
+        animator.SetFloat("dx", rb2d.velocity[0] / 10);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
