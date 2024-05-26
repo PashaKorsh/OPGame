@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using System.Linq;
 using System.IO;
 
@@ -25,13 +24,13 @@ public class DialogueHandler : MonoBehaviour
 
     private Sprite GetSprite(string filename)
     {
-        var texture2D = Resources.Load<Texture2D>(filename);
+        var texture2D = Resources.Load<Texture2D>("Sprites/" + filename);
         return Sprite.Create(texture2D, new Rect(0.0f, 0.0f, texture2D.width, texture2D.height), new Vector2(0.5f, 0.5f));
     }
 
     private void ReadDialogue(string filename)
     {
-        dialogue = Resources.Load<TextAsset>(filename)
+        dialogue = Resources.Load<TextAsset>("Texts/" + filename)
             .text
             .Split("|")
             .Select(x => (x.Split("\\")[0], x.Split("\\")[1]))

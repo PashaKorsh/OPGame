@@ -1,0 +1,686 @@
+fileFormatVersion: 2
+guid: 98b3de94dc618444aa934244c11cef13
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: boatcenter (4)_0
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 3196
+        width: 807
+        height: 688
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9be14497a3c8ae44db4e0633ba265b88
+      internalID: -1754822339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boatcenter (4)_1
+      rect:
+        serializedVersion: 2
+        x: 1096
+        y: 3196
+        width: 847
+        height: 688
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d06795fa72ebca42951ca463dff6259
+      internalID: -1273604400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boatcenter (4)_2
+      rect:
+        serializedVersion: 2
+        x: 2086
+        y: 3196
+        width: 870
+        height: 688
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82ac05207da23ca4ead406155483b611
+      internalID: -484980836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boatcenter (4)_3
+      rect:
+        serializedVersion: 2
+        x: 3096
+        y: 3196
+        width: 888
+        height: 688
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53a1021cbbda53344bd5afe880ef11e2
+      internalID: 2037597750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boatcenter (4)_4
+      rect:
+        serializedVersion: 2
+        x: 4115
+        y: 3196
+        width: 889
+        height: 688
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fcc94d88f910834db88ac68a431e65f
+      internalID: -1877514868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boatcenter (4)_5
+      rect:
+        serializedVersion: 2
+        x: 5136
+        y: 3196
+        width: 888
+        height: 688
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3793fa613decea749b7d50493541139d
+      internalID: 382006906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boatcenter (4)_6
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 2416
+        width: 906
+        height: 688
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 211f14f01e1b2e84fa16596553a92dfa
+      internalID: -1318074091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boatcenter (4)_7
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 2416
+        width: 908
+        height: 688
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ddaea35a3ab8ab4686f6cdbbb0da684
+      internalID: 1675027735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boatcenter (4)_8
+      rect:
+        serializedVersion: 2
+        x: 2057
+        y: 2416
+        width: 926
+        height: 688
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4698687bbb5a884f8ea4575930db2a3
+      internalID: -6579624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boatcenter (4)_9
+      rect:
+        serializedVersion: 2
+        x: 3075
+        y: 2416
+        width: 930
+        height: 688
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0437df992a15834eaf3017d169994bb
+      internalID: 89279293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boatcenter (4)_10
+      rect:
+        serializedVersion: 2
+        x: 4097
+        y: 2416
+        width: 926
+        height: 688
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e18797256b1c68d4586afc6888c89c94
+      internalID: 1921166969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boatcenter (4)_11
+      rect:
+        serializedVersion: 2
+        x: 5116
+        y: 2416
+        width: 908
+        height: 688
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc662bc571c23c54bbfc6a19e1e6a4e7
+      internalID: -218189011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boatcenter (4)_12
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 1615
+        width: 906
+        height: 688
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a82a5d1e476aa9b40903a9fb10bb92b1
+      internalID: -1737874025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boatcenter (4)_13
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 1615
+        width: 908
+        height: 688
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37940eaec28b53a4cab240fffb2a1931
+      internalID: 1023913416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boatcenter (4)_14
+      rect:
+        serializedVersion: 2
+        x: 2078
+        y: 1615
+        width: 905
+        height: 688
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 370bf46633a72bf49a4f01166f50f548
+      internalID: 1362552303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boatcenter (4)_15
+      rect:
+        serializedVersion: 2
+        x: 3075
+        y: 1615
+        width: 930
+        height: 688
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00edea3ae381c1143be1e05dbd449e27
+      internalID: -1431766070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boatcenter (4)_16
+      rect:
+        serializedVersion: 2
+        x: 4097
+        y: 1615
+        width: 907
+        height: 688
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97ec333db7135984f984b400435ea4b0
+      internalID: -920599119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boatcenter (4)_17
+      rect:
+        serializedVersion: 2
+        x: 5116
+        y: 1615
+        width: 908
+        height: 688
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e963c0106e6ac34c98ecd9f71a3dca5
+      internalID: 1362797962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boatcenter (4)_18
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 835
+        width: 927
+        height: 688
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97043891920a8f149805d4dc0d270f81
+      internalID: -928571967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boatcenter (4)_19
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 835
+        width: 908
+        height: 688
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4d3b0e529dc2ba429e7410af5f90121
+      internalID: 421538705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boatcenter (4)_20
+      rect:
+        serializedVersion: 2
+        x: 2078
+        y: 835
+        width: 905
+        height: 688
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba8fc72b15f19d44bac6e30690cf245f
+      internalID: -1294269728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boatcenter (4)_21
+      rect:
+        serializedVersion: 2
+        x: 3096
+        y: 835
+        width: 909
+        height: 688
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a183fa6bb0802d44a39f864390ea090
+      internalID: -1708910803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boatcenter (4)_22
+      rect:
+        serializedVersion: 2
+        x: 4115
+        y: 835
+        width: 908
+        height: 688
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa67bd5a43c6e8941b66025fa287ebfa
+      internalID: -100294711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boatcenter (4)_23
+      rect:
+        serializedVersion: 2
+        x: 5136
+        y: 835
+        width: 909
+        height: 688
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7597915272fd4724f98dc3b773716832
+      internalID: 1397576016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boatcenter (4)_24
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 37
+        width: 849
+        height: 688
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfc66edcefdd9bd4c8c9daca7de00854
+      internalID: -1343448740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boatcenter (4)_25
+      rect:
+        serializedVersion: 2
+        x: 1096
+        y: 37
+        width: 847
+        height: 688
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6314e134a3072f148ae5981d77936f55
+      internalID: -49808357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      boatcenter (4)_0: -1754822339
+      boatcenter (4)_1: -1273604400
+      boatcenter (4)_10: 1921166969
+      boatcenter (4)_11: -218189011
+      boatcenter (4)_12: -1737874025
+      boatcenter (4)_13: 1023913416
+      boatcenter (4)_14: 1362552303
+      boatcenter (4)_15: -1431766070
+      boatcenter (4)_16: -920599119
+      boatcenter (4)_17: 1362797962
+      boatcenter (4)_18: -928571967
+      boatcenter (4)_19: 421538705
+      boatcenter (4)_2: -484980836
+      boatcenter (4)_20: -1294269728
+      boatcenter (4)_21: -1708910803
+      boatcenter (4)_22: -100294711
+      boatcenter (4)_23: 1397576016
+      boatcenter (4)_24: -1343448740
+      boatcenter (4)_25: -49808357
+      boatcenter (4)_3: 2037597750
+      boatcenter (4)_4: -1877514868
+      boatcenter (4)_5: 382006906
+      boatcenter (4)_6: -1318074091
+      boatcenter (4)_7: 1675027735
+      boatcenter (4)_8: -6579624
+      boatcenter (4)_9: 89279293
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
