@@ -24,16 +24,16 @@ public class DialogueHandler : MonoBehaviour
 
     private Sprite GetSprite(string filename)
     {
-        var texture2D = Resources.Load<Texture2D>("Sprites/" + filename);
+        var texture2D = Resources.Load<Texture2D>("Dialogues/" + filename);
         return Sprite.Create(texture2D, new Rect(0.0f, 0.0f, texture2D.width, texture2D.height), new Vector2(0.5f, 0.5f));
     }
 
     private void ReadDialogue(string filename)
     {
-        dialogue = Resources.Load<TextAsset>("Texts/" + filename)
+        dialogue = Resources.Load<TextAsset>("Dialogues/" + filename)
             .text
-            .Split("|")
-            .Select(x => (x.Split("\\")[0], x.Split("\\")[1]))
+            .Split("\n")
+            .Select(x => (x.Split("|")[0], x.Split("|")[1]))
             .ToList();
         
     }
@@ -44,7 +44,7 @@ public class DialogueHandler : MonoBehaviour
         {
             if (dialogueCounter == dialogue.Count)
             {
-                StartCoroutine(fader.Fade("SubwaySurfGame"));
+                StartCoroutine(fader.Fade("SokobanGame"));
                 return;
             }
             dialogueBox.Write(dialogue[dialogueCounter].Phrase);
