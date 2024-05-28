@@ -14,4 +14,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TestScene.unity
     guid: d27cd784cd0f135448fd6a8a945fd648
+  - enabled: 1
+    path: Assets/Scenes/SokobanGame.unity
+    guid: b12f5b2f23924ed4997d843422c388b6
+  - enabled: 1
+    path: Assets/Scenes/PVEGame.unity
+    guid: 2c059de6c6c8cf84ca4c97909f163040
+  - enabled: 1
+    path: Assets/Scenes/SubwaySurfGame.unity
+    guid: ef1c149858257bf49aff9a52ed7311c1
   m_configObjects: {}
