@@ -5,55 +5,31 @@ using UnityEngine.SceneManagement;
 
 public class SubwayPlayer : MonoBehaviour
 {
-    private Rigidbody2D rb2d;
-    private BoxCollider2D boxCollider2D;
-    private Animator animator;
-    private int score;
+    public SubwayMain main;
+    private float yCoord;
 
-    private Vector3 velocity;
-    private bool _paused = false;
-
-    void PauseRB2D()
-    {
-        velocity = rb2d.velocity;
-        rb2d.velocity = Vector3.zero;
-        _paused = true;
-    }
-
-    void ResumeRB2D()
-    {
-        rb2d.velocity = velocity;
-        _paused = false;
-    }
 
     void Start()
     {
-        rb2d = gameObject.GetComponent<Rigidbody2D>();
-        boxCollider2D = gameObject.GetComponent<BoxCollider2D>();
-        animator = gameObject.GetComponent<Animator>();
+        yCoord = -0.5f * Screen.height / 200f;
     }
 
-    void FixedUpdate()
+    void OnTriggerEnter2D(Collider2D collider)
     {
-        if (!_paused)
-            CalculateNext();
-    }
-
-    void CalculateNext()
-    {
-        rb2d.AddForce(new Vector3(Input.GetAxis("Horizontal") * 50, 0f, 0f));
-        animator.SetFloat("dx", rb2d.velocity[0] / 10);
+        if (collider.gameObject.tag == "coin")
+        {
+            main.score++;
+            Destroy(collider.gameObject);
+            return;
+        } else if (collider.gameObject.tag == "shark")
+            GameObject.Find("Main Camera").SendMessage("Restart");
+        else if (collider.gameObject.tag == "trash")
+            GameObject.Find("Main Camera").SendMessage("Restart");
+        // SceneManager.LoadScene("SubwaySurfGame");
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider is CircleCollider2D)
-        {
-            SceneManager.LoadScene("PVEGame");
-            score++;
-            Destroy(collision.gameObject);
-            return;
-        }
-        Destroy(gameObject);
+        GameObject.Find("Main Camera").SendMessage("Win");
     }
 }

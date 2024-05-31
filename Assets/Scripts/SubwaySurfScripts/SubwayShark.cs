@@ -16,7 +16,7 @@ public class SubwayShark : MonoBehaviour
         );
     }
 
-    void Update()
+    public void CalculateNext()
     {
         transform.position += direction * speed * Time.deltaTime;
     }

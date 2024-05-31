@@ -16,8 +16,8 @@ public class DialogueHandler : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(fader.UnFade());
-        ReadDialogue("text");
+        fader.UnFade();
+        ReadDialogue("dialogue" + (IntersceneInfo.dialogueNum + 1));
         dialogueBox.Write(dialogue[dialogueCounter].Phrase);
         pictureHandler.UpdatePicture(GetSprite(dialogue[dialogueCounter++].Picture));
     }
@@ -25,6 +25,7 @@ public class DialogueHandler : MonoBehaviour
     private Sprite GetSprite(string filename)
     {
         var texture2D = Resources.Load<Texture2D>("Dialogues/" + filename);
+        // Debug.Log(filename[3]);
         return Sprite.Create(texture2D, new Rect(0.0f, 0.0f, texture2D.width, texture2D.height), new Vector2(0.5f, 0.5f));
     }
 
@@ -33,9 +34,8 @@ public class DialogueHandler : MonoBehaviour
         dialogue = Resources.Load<TextAsset>("Dialogues/" + filename)
             .text
             .Split("\n")
-            .Select(x => (x.Split("|")[0], x.Split("|")[1]))
+            .Select(x => (x.Split("|")[0], x.Split("|")[1].Trim()))
             .ToList();
-        
     }
 
     void Update()
@@ -44,7 +44,7 @@ public class DialogueHandler : MonoBehaviour
         {
             if (dialogueCounter == dialogue.Count)
             {
-                StartCoroutine(fader.Fade("SokobanGame"));
+                EndDialogue();
                 return;
             }
             dialogueBox.Write(dialogue[dialogueCounter].Phrase);
@@ -53,5 +53,13 @@ public class DialogueHandler : MonoBehaviour
         }
         else
             _pressedSpace = false;
+        
+        if (Input.GetKeyDown("escape"))
+            EndDialogue();
+    }
+
+    void EndDialogue()
+    {
+        fader.Fade(IntersceneInfo.games[IntersceneInfo.dialogueNum++]);
     }
 }

@@ -1,24 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SokobanMain : MonoBehaviour
 {
-    public GameObject player;
-    public GameObject[] boxes;
-    public Transform[,] board;
-
+    public SokobanPlayer player;
+    public GameObject field;
     public GameObject boxPrefab;
+
+    private GameObject[] boxes;
+    private Transform[,] board;
     private float side;
 
     void Start()
     {
+        // var b = 
+        var a = Screen.height / field.GetComponent<SpriteRenderer>().sprite.rect.height;
+        field.transform.localScale = new Vector3(a, a, 1);
         var x = 10;
         var y = 10;
-        var rect = player.GetComponent<SpriteRenderer>().sprite.rect;
-        side = (float)Mathf.Min(Screen.width, Screen.height) / Mathf.Max(x, y);
+        // var rect = player.GetComponent<SpriteRenderer>().sprite.rect;
+        // side = (float)Mathf.Min(Screen.width, Screen.height) / Mathf.Max(x, y);
         
-        player.transform.localScale = new Vector3(side / rect.width, side / rect.height, 0);
+        // player.transform.localScale = new Vector3(side / rect.width, side / rect.height, 0);
 
         board = new Transform[x, y];
         boxes = new GameObject[3];
@@ -32,22 +37,22 @@ public class SokobanMain : MonoBehaviour
             Vector3 pos = box.transform.position;
             board[(int)pos.x, (int)pos.y] = box.transform;
         }
-        board[(int)player.transform.position.x, (int)player.transform.position.y] = player.transform;
+        // board[(int)player.transform.position.x, (int)player.transform.position.y] = player.transform;
     }
 
-    void MovePlayer(Vector3 direction)
-    {
-        Vector3 newPos = player.transform.position + direction;
+    // void MovePlayer(Vector3 direction)
+    // {
+    //     Vector3 newPos = player.transform.position + direction;
 
-        // if (IsValidMove(newPos))
-        // {
-        //     board[(int)player.transform.position.x, (int)player.transform.position.y] = null;
-        player.transform.position = newPos;
-        //     board[(int)newPos.x, (int)newPos.y] = player.transform;
-        // }
+    //     // if (IsValidMove(newPos))
+    //     // {
+    //     //     board[(int)player.transform.position.x, (int)player.transform.position.y] = null;
+    //     player.transform.position = newPos;
+    //     //     board[(int)newPos.x, (int)newPos.y] = player.transform;
+    //     // }
 
-        // CheckWin();
-    }
+    //     // CheckWin();
+    // }
 
     bool IsValidMove(Vector3 pos)
     {
@@ -80,12 +85,20 @@ public class SokobanMain : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
-            MovePlayer(Vector3.up);
+            player.Move(Vector3.up);
         else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
-            MovePlayer(Vector3.down);
+            player.Move(Vector3.down);
         else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
-            MovePlayer(Vector3.left);
+            player.Move(Vector3.left);
         else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
-            MovePlayer(Vector3.right);
+            player.Move(Vector3.right);
+        
+        if (Input.GetKeyDown("escape"))
+            Win();
+    }
+
+    void Win()
+    {
+        SceneManager.LoadScene("PowerPointScene");
     }
 }
