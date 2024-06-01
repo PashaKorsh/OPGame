@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-using System.IO;
 
 public class DialogueHandler : MonoBehaviour
 {
@@ -13,6 +12,7 @@ public class DialogueHandler : MonoBehaviour
     private int dialogueCounter = 0;
     private bool _pressedSpace = false;
     private List<(string Phrase, string Picture)> dialogue = new();
+    private bool _isSkip = false;
 
     void Start()
     {
@@ -25,7 +25,6 @@ public class DialogueHandler : MonoBehaviour
     private Sprite GetSprite(string filename)
     {
         var texture2D = Resources.Load<Texture2D>("Dialogues/" + filename);
-        // Debug.Log(filename[3]);
         return Sprite.Create(texture2D, new Rect(0.0f, 0.0f, texture2D.width, texture2D.height), new Vector2(0.5f, 0.5f));
     }
 
@@ -43,13 +42,13 @@ public class DialogueHandler : MonoBehaviour
         if (Input.GetKeyDown("space") && !_pressedSpace)
         {
             if (dialogueCounter == dialogue.Count)
-            {
                 EndDialogue();
-                return;
+            else
+            {
+                dialogueBox.Write(dialogue[dialogueCounter].Phrase);
+                pictureHandler.UpdatePicture(GetSprite(dialogue[dialogueCounter++].Picture));
+                _pressedSpace = true;
             }
-            dialogueBox.Write(dialogue[dialogueCounter].Phrase);
-            pictureHandler.UpdatePicture(GetSprite(dialogue[dialogueCounter++].Picture));
-            _pressedSpace = true;
         }
         else
             _pressedSpace = false;
@@ -60,6 +59,8 @@ public class DialogueHandler : MonoBehaviour
 
     void EndDialogue()
     {
-        fader.Fade(IntersceneInfo.games[IntersceneInfo.dialogueNum++]);
+        if (!_isSkip)
+            fader.Fade(IntersceneInfo.games[IntersceneInfo.dialogueNum++]);
+        _isSkip = true;
     }
 }

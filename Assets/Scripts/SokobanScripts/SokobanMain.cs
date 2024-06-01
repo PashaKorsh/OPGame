@@ -7,94 +7,126 @@ public class SokobanMain : MonoBehaviour
 {
     public SokobanPlayer player;
     public GameObject field;
-    public GameObject boxPrefab;
 
-    private GameObject[] boxes;
     private Transform[,] board;
     private float side;
+    private Vector2 stepSize;
+    private Vector2 fieldSize;
+    private Vector3 playerPos;
+
+    private List<Vector2> targetBox = new();
+    private List<Vector2> targetMeshok = new();
+
+    void ParseLevel(string filename)
+    {
+        var a = Resources.Load<TextAsset>("SokobanLevels/" + filename).text.Split('\n');
+        fieldSize = new Vector2(a[0].Length - 1, a.Length);
+        board = new Transform[(int)fieldSize[0], (int)fieldSize[1]];
+        var b = field.GetComponent<BoxCollider2D>();
+        stepSize = new Vector2(b.size[0] / fieldSize[0], b.size[1] / fieldSize[1]);
+
+        for (var x = 0; x < fieldSize[0]; x++)
+            for (var y = 0; y < fieldSize[1]; y++)
+                if (a[(int)fieldSize[1] - y - 1][x] == 'P')
+                    playerPos = new Vector3(x, y, 0);
+                else if (a[(int)fieldSize[1] - y - 1][x] == 'B')
+                    board[x, y] = Instantiate(Resources.Load<GameObject>("Prefabs/box"), new Vector3(
+                        b.offset.x - b.size.x / 2 + stepSize[0] * (x + 0.5f),
+                        b.offset.y - b.size.y / 2 + stepSize[1] * (y + 0.5f),
+                        -4
+                    ), Quaternion.identity).transform;
+                else if (a[(int)fieldSize[1] - y - 1][x] == 'M')
+                    board[x, y] = Instantiate(Resources.Load<GameObject>("Prefabs/meshok"), new Vector3(
+                        b.offset.x - b.size.x / 2 + stepSize[0] * (x + 0.5f),
+                        b.offset.y - b.size.y / 2 + stepSize[1] * (y + 0.5f),
+                        -4
+                    ), Quaternion.identity).transform;
+                else if (a[(int)fieldSize[1] - y - 1][x] == 'b')
+                {
+                    targetBox.Add(new Vector2(x, y));
+                    Instantiate(Resources.Load<GameObject>("Prefabs/box_target"), new Vector3(
+                        b.offset.x - b.size.x / 2 + stepSize[0] * (x + 0.5f),
+                        b.offset.y - b.size.y / 2 + stepSize[1] * (y + 0.5f),
+                        -3
+                    ), Quaternion.identity);
+                }
+                else if (a[(int)fieldSize[1] - y - 1][x] == 'm')
+                {
+                    targetMeshok.Add(new Vector2(x, y));
+                    Instantiate(Resources.Load<GameObject>("Prefabs/meshok_target"), new Vector3(
+                        b.offset.x - b.size.x / 2 + stepSize[0] * (x + 0.5f),
+                        b.offset.y - b.size.y / 2 + stepSize[1] * (y + 0.5f),
+                        -3
+                    ), Quaternion.identity);
+                }
+                else if (a[(int)fieldSize[1] - y - 1][x] == 'W')
+                    board[x, y] = Instantiate(Resources.Load<GameObject>("Prefabs/stone_Skala_tipo"), new Vector3(
+                        b.offset.x - b.size.x / 2 + stepSize[0] * (x + 0.5f),
+                        b.offset.y - b.size.y / 2 + stepSize[1] * (y + 0.5f),
+                        -4
+                    ), Quaternion.identity).transform;
+    }
 
     void Start()
     {
-        // var b = 
-        var a = Screen.height / field.GetComponent<SpriteRenderer>().sprite.rect.height;
+        var a = Screen.currentResolution.height / field.GetComponent<SpriteRenderer>().sprite.rect.height;
         field.transform.localScale = new Vector3(a, a, 1);
-        var x = 10;
-        var y = 10;
-        // var rect = player.GetComponent<SpriteRenderer>().sprite.rect;
-        // side = (float)Mathf.Min(Screen.width, Screen.height) / Mathf.Max(x, y);
         
-        // player.transform.localScale = new Vector3(side / rect.width, side / rect.height, 0);
-
-        board = new Transform[x, y];
-        boxes = new GameObject[3];
-
-        boxes[0] = Instantiate(boxPrefab, new Vector3(1, 0, 0), Quaternion.identity);
-        boxes[1] = Instantiate(boxPrefab, new Vector3(2, 1, 0), Quaternion.identity);
-        boxes[2] = Instantiate(boxPrefab, new Vector3(3, 0, 0), Quaternion.identity);
-
-        foreach (GameObject box in boxes)
-        {
-            Vector3 pos = box.transform.position;
-            board[(int)pos.x, (int)pos.y] = box.transform;
-        }
-        // board[(int)player.transform.position.x, (int)player.transform.position.y] = player.transform;
+        ParseLevel("soko1");
+        var b = field.GetComponent<BoxCollider2D>();
+        player.transform.position = new Vector3(
+            b.offset.x - b.size.x / 2 + stepSize[0] * (playerPos[0] + 0.5f),
+            b.offset.y - b.size.y / 2 + stepSize[1] * (playerPos[1] + 0.5f),
+            -5
+        );
     }
 
-    // void MovePlayer(Vector3 direction)
-    // {
-    //     Vector3 newPos = player.transform.position + direction;
-
-    //     // if (IsValidMove(newPos))
-    //     // {
-    //     //     board[(int)player.transform.position.x, (int)player.transform.position.y] = null;
-    //     player.transform.position = newPos;
-    //     //     board[(int)newPos.x, (int)newPos.y] = player.transform;
-    //     // }
-
-    //     // CheckWin();
-    // }
-
-    bool IsValidMove(Vector3 pos)
+    void MovePlayer(Vector3 direction)
     {
-        // if (pos.x >= 0 && pos.x < board.GetLength(0) && pos.y >= 0 && pos.y < board.GetLength(1))
-        // {
-        //     if (board[(int)pos.x, (int)pos.y] == null)
-        //         return true;
-        // }
-        // return false;
-        return true;
-    }
-
-    void CheckWin()
-    {
-        bool win = true;
-        foreach (GameObject box in boxes)
+        var newPos = playerPos + direction;
+        if (newPos.x < 0 || newPos.y < 0 || newPos.x >= fieldSize[0] || newPos.y >= fieldSize[1]
+            || player._moving) return;
+        
+        if (board[(int)newPos.x, (int)newPos.y] != null)
         {
-            Vector3 pos = box.transform.position;
-            if (board[(int)pos.x, (int)pos.y] != box.transform)
-            {
-                win = false;
-                break;
-            }
-        }
+            if (board[(int)newPos.x, (int)newPos.y].gameObject.name.Contains("stone"))
+                return;
+            var newnewPos = newPos + direction;
+            if (newnewPos.x < 0 || newnewPos.y < 0 || newnewPos.x >= fieldSize[0] || newnewPos.y >= fieldSize[1]
+                || board[(int)newnewPos.x, (int)newnewPos.y] != null
+                || board[(int)newPos.x, (int)newPos.y].gameObject.name.Contains("stone")) return;
 
-        if (win)
-            Debug.Log("You win!");
+            board[(int)newnewPos.x, (int)newnewPos.y] = board[(int)newPos.x, (int)newPos.y];
+            board[(int)newPos.x, (int)newPos.y] = null;
+            player.MoveWithBox(direction * stepSize[direction[0] != 0 ? 0 : 1], board[(int)newnewPos.x, (int)newnewPos.y]);
+        }
+        else
+            player.Move(direction * stepSize[direction[0] != 0 ? 0 : 1]);
+
+        playerPos = newPos;
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
-            player.Move(Vector3.up);
-        else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
-            player.Move(Vector3.down);
-        else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
-            player.Move(Vector3.left);
-        else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
-            player.Move(Vector3.right);
-        
-        if (Input.GetKeyDown("escape"))
-            Win();
+        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
+            MovePlayer(Vector3.up);
+        else if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
+            MovePlayer(Vector3.down);
+        else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+            MovePlayer(Vector3.left);
+        else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+            MovePlayer(Vector3.right);
+    }
+
+    void CheckWin()
+    {
+        foreach (var target in targetBox)
+            if (!board[(int)target.x, (int)target.y] || !board[(int)target.x, (int)target.y].gameObject.name.Contains("box"))
+                return;
+        foreach (var target in targetMeshok)
+            if (!board[(int)target.x, (int)target.y] || !board[(int)target.x, (int)target.y].gameObject.name.Contains("meshok"))
+                return;
+        Win();
     }
 
     void Win()
