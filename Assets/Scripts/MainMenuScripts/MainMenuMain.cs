@@ -19,7 +19,6 @@ public class MainMenuMain : MonoBehaviour
         if (index == 0)
             fader.Fade("PowerPointScene");
         else if (index == 1)
-        // fader.Fade("SokobanGame");
             Application.Quit();
     }
 }

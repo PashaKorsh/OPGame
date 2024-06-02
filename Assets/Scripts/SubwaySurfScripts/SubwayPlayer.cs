@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class SubwayPlayer : MonoBehaviour
 {
-    public SubwayMain main;
     private float yCoord;
 
 
@@ -18,7 +17,7 @@ public class SubwayPlayer : MonoBehaviour
     {
         if (collider.gameObject.tag == "coin")
         {
-            main.score++;
+            IntersceneInfo.coinCount++;
             Destroy(collider.gameObject);
             return;
         } else if (collider.gameObject.tag == "shark")

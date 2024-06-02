@@ -18,7 +18,19 @@ public class PVEMain : MonoBehaviour
         );
         mainCamera.transform.localPosition += (a - mainCamera.transform.localPosition) * Time.deltaTime * 10;
 
+        
+        if (Input.GetMouseButtonDown(0))
+        {
+            var b = Instantiate(Resources.Load<GameObject>("Prefabs/bullet"), player.transform.position, Quaternion.identity);
+            b.transform.Rotate(0,0,Mathf.Atan2(-a[0], a[1]) * Mathf.Rad2Deg + 90);
+        }
+
         if (Input.GetKeyDown("escape"))
             SceneManager.LoadScene("PowerPointScene");
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        Destroy(collision.gameObject);
     }
 }

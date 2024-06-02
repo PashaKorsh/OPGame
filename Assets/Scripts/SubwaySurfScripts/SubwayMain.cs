@@ -10,7 +10,7 @@ public class SubwayMain : MonoBehaviour
     public SubwayPlayer player;
     public int score;
 
-    private bool _paused;
+    private Pause pause;
     private Rigidbody2D rb2d;
     private Animator animator;
     private Vector3 velocity;
@@ -22,24 +22,26 @@ public class SubwayMain : MonoBehaviour
         rb2d = player.GetComponent<Rigidbody2D>();
         animator = player.GetComponent<Animator>();
         subwaySharks = GameObject.FindGameObjectsWithTag("shark").Select(x => x.GetComponent<SubwayShark>()).ToArray();
+
+        pause = GetComponent<Pause>();
+        pause._paused = true;
+        pause.OnPause();
     }
 
     void PauseGame()
     {
         velocity = rb2d.velocity;
         rb2d.velocity = Vector3.zero;
-        _paused = true;
     }
 
     void UnpauseGame()
     {
-        _paused = false;
         rb2d.velocity = velocity;
     }
 
     void FixedUpdate()
     {
-        if (!_paused)
+        if (!pause._paused)
             CalculateNext();
     }
 

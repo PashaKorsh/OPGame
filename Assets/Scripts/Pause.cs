@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Pause : MonoBehaviour
 {
@@ -15,12 +16,24 @@ public class Pause : MonoBehaviour
         {
             _pressingEsc = true;
             _paused = !_paused;
-            pauseWindow.SetActive(_paused);
             if (_paused)
-                gameManager.SendMessage("PauseGame");
+                OnPause();
             else
-                gameManager.SendMessage("UnpauseGame");
+                OnResume();
         } else
             _pressingEsc = false;
+    }
+
+    public void OnPause()
+    {
+        pauseWindow.SetActive(true);
+        pauseWindow.GetComponentInChildren<TextMeshPro>().text = IntersceneInfo.coinCount.ToString();
+        gameManager.SendMessage("PauseGame");
+    }
+
+    public void OnResume()
+    {
+        pauseWindow.SetActive(false);
+        gameManager.SendMessage("UnpauseGame");
     }
 }
