@@ -10,7 +10,11 @@ public class MainMenuMain : MonoBehaviour
     public void Start()
     {
         var sprite = picture.GetComponent<SpriteRenderer>().sprite;
-        picture.transform.localScale = new Vector3(Screen.width / sprite.rect.width, Screen.height / sprite.rect.height, 1);
+        picture.transform.localScale = new Vector3(
+            Camera.main.orthographicSize * 200f * Camera.main.aspect / sprite.rect.width,
+            Camera.main.orthographicSize * 200f / sprite.rect.height,
+            1
+        );
         fader.UnFade();
     }
 
@@ -19,6 +23,7 @@ public class MainMenuMain : MonoBehaviour
         if (index == 0)
             fader.Fade("PowerPointScene");
         else if (index == 1)
-            Application.Quit();
+            // Application.Quit();
+            fader.Fade("SokobanGame");
     }
 }

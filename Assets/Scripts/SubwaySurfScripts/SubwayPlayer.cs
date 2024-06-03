@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class SubwayPlayer : MonoBehaviour
 {
     private float yCoord;
+    public SubwayMain main;
 
 
     void Start()
@@ -20,15 +21,24 @@ public class SubwayPlayer : MonoBehaviour
             IntersceneInfo.coinCount++;
             Destroy(collider.gameObject);
             return;
-        } else if (collider.gameObject.tag == "shark")
-            GameObject.Find("Main Camera").SendMessage("Restart");
+        }
+        else if (collider.gameObject.tag == "shark")
+        {
+            main.PlaySound("хрум");
+            main.Death();
+        }
         else if (collider.gameObject.tag == "trash")
-            GameObject.Find("Main Camera").SendMessage("Restart");
-        // SceneManager.LoadScene("SubwaySurfGame");
+        {
+            main.PlaySound("wilhelm_scream");
+            main.Death();
+        }
+        else if (collider.gameObject.name == "2")
+            GameObject.Find("Main Camera").SendMessage("Win");   
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        GameObject.Find("Main Camera").SendMessage("Win");
+        main.PlaySound("wilhelm_scream");
+        main.Death();
     }
 }

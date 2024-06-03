@@ -1,84 +1,107 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using TMPro;
 using UnityEngine.SceneManagement;
 
 public class SokobanMain : MonoBehaviour
 {
     public SokobanPlayer player;
     public GameObject field;
+    public Fader fader;
+    public GameObject pauseWindow;
 
+    private float time;
     private Transform[,] board;
     private float side;
     private Vector2 stepSize;
     private Vector2 fieldSize;
     private Vector3 playerPos;
+    private bool paused;
+    private bool skip;
 
     private List<Vector2> targetBox = new();
     private List<Vector2> targetMeshok = new();
+    private Vector2 boxWas;
 
     void ParseLevel(string filename)
     {
         var a = Resources.Load<TextAsset>("SokobanLevels/" + filename).text.Split('\n');
         fieldSize = new Vector2(a[0].Length - 1, a.Length);
-        board = new Transform[(int)fieldSize[0], (int)fieldSize[1]];
+        board = new Transform[a[0].Length - 1, a.Length];
         var b = field.GetComponent<BoxCollider2D>();
-        stepSize = new Vector2(b.size[0] / fieldSize[0], b.size[1] / fieldSize[1]);
+        stepSize = new Vector2((b.size[0] / fieldSize[0]) * field.transform.localScale[0], (b.size[1] / fieldSize[1]) * field.transform.localScale[1]);
+        var pos = new Vector3(
+            b.bounds.min[0] * field.transform.localScale[0] / boxWas[0],
+            b.bounds.min[1] * field.transform.localScale[1] / boxWas[1],
+            0
+        );
 
         for (var x = 0; x < fieldSize[0]; x++)
             for (var y = 0; y < fieldSize[1]; y++)
                 if (a[(int)fieldSize[1] - y - 1][x] == 'P')
+                {
                     playerPos = new Vector3(x, y, 0);
+                    player.transform.position = new Vector3(
+                        pos.x + stepSize[0] * (x + 0.5f),
+                        pos.y + stepSize[1] * (y + 0.5f),
+                        -5
+                    );
+                }
                 else if (a[(int)fieldSize[1] - y - 1][x] == 'B')
-                    board[x, y] = Instantiate(Resources.Load<GameObject>("Prefabs/box"), new Vector3(
-                        b.offset.x - b.size.x / 2 + stepSize[0] * (x + 0.5f),
-                        b.offset.y - b.size.y / 2 + stepSize[1] * (y + 0.5f),
+                    board[x, y] = Instantiate(Resources.Load<GameObject>("Prefabs/box"), pos + new Vector3(
+                        stepSize[0] * (x + 0.5f),
+                        stepSize[1] * (y + 0.5f),
                         -4
                     ), Quaternion.identity).transform;
                 else if (a[(int)fieldSize[1] - y - 1][x] == 'M')
-                    board[x, y] = Instantiate(Resources.Load<GameObject>("Prefabs/meshok"), new Vector3(
-                        b.offset.x - b.size.x / 2 + stepSize[0] * (x + 0.5f),
-                        b.offset.y - b.size.y / 2 + stepSize[1] * (y + 0.5f),
+                    board[x, y] = Instantiate(Resources.Load<GameObject>("Prefabs/meshok"), pos + new Vector3(
+                        stepSize[0] * (x + 0.5f),
+                        stepSize[1] * (y + 0.5f),
                         -4
                     ), Quaternion.identity).transform;
                 else if (a[(int)fieldSize[1] - y - 1][x] == 'b')
                 {
                     targetBox.Add(new Vector2(x, y));
-                    Instantiate(Resources.Load<GameObject>("Prefabs/box_target"), new Vector3(
-                        b.offset.x - b.size.x / 2 + stepSize[0] * (x + 0.5f),
-                        b.offset.y - b.size.y / 2 + stepSize[1] * (y + 0.5f),
+                    Instantiate(Resources.Load<GameObject>("Prefabs/box_target"), pos + new Vector3(
+                        stepSize[0] * (x + 0.5f),
+                        stepSize[1] * (y + 0.5f),
                         -3
                     ), Quaternion.identity);
                 }
                 else if (a[(int)fieldSize[1] - y - 1][x] == 'm')
                 {
                     targetMeshok.Add(new Vector2(x, y));
-                    Instantiate(Resources.Load<GameObject>("Prefabs/meshok_target"), new Vector3(
-                        b.offset.x - b.size.x / 2 + stepSize[0] * (x + 0.5f),
-                        b.offset.y - b.size.y / 2 + stepSize[1] * (y + 0.5f),
+                    Instantiate(Resources.Load<GameObject>("Prefabs/meshok_target"), pos + new Vector3(
+                        stepSize[0] * (x + 0.5f),
+                        stepSize[1] * (y + 0.5f),
                         -3
                     ), Quaternion.identity);
                 }
                 else if (a[(int)fieldSize[1] - y - 1][x] == 'W')
-                    board[x, y] = Instantiate(Resources.Load<GameObject>("Prefabs/stone_Skala_tipo"), new Vector3(
-                        b.offset.x - b.size.x / 2 + stepSize[0] * (x + 0.5f),
-                        b.offset.y - b.size.y / 2 + stepSize[1] * (y + 0.5f),
+                    board[x, y] = Instantiate(Resources.Load<GameObject>("Prefabs/stone_Skala_tipo"), pos + new Vector3(
+                        stepSize[0] * (x + 0.5f),
+                        stepSize[1] * (y + 0.5f),
                         -4
                     ), Quaternion.identity).transform;
     }
 
     void Start()
     {
-        var a = Screen.currentResolution.height / field.GetComponent<SpriteRenderer>().sprite.rect.height;
-        field.transform.localScale = new Vector3(a, a, 1);
-        
-        ParseLevel("soko1");
-        var b = field.GetComponent<BoxCollider2D>();
-        player.transform.position = new Vector3(
-            b.offset.x - b.size.x / 2 + stepSize[0] * (playerPos[0] + 0.5f),
-            b.offset.y - b.size.y / 2 + stepSize[1] * (playerPos[1] + 0.5f),
-            -5
+        skip = false;
+        boxWas = new Vector2(field.transform.localScale[0], field.transform.localScale[1]);
+        fader.UnFade();
+        paused = IntersceneInfo.sokoNeedInstruction;
+        IntersceneInfo.sokoNeedInstruction = false;
+        pauseWindow.SetActive(paused);
+        var sprite = field.GetComponent<SpriteRenderer>().sprite;
+        field.transform.localScale = new Vector3(
+            Camera.main.orthographicSize * 200f * Camera.main.aspect / sprite.rect.width,
+            Camera.main.orthographicSize * 200f / sprite.rect.height,
+            1
         );
+        ParseLevel("soko" + (IntersceneInfo.sokoNum + 1));
     }
 
     void MovePlayer(Vector3 direction)
@@ -102,20 +125,38 @@ public class SokobanMain : MonoBehaviour
         }
         else
             player.Move(direction * stepSize[direction[0] != 0 ? 0 : 1]);
-
         playerPos = newPos;
     }
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
-            MovePlayer(Vector3.up);
-        else if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
-            MovePlayer(Vector3.down);
-        else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
-            MovePlayer(Vector3.left);
-        else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
-            MovePlayer(Vector3.right);
+        if (!paused)
+            if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
+                MovePlayer(Vector3.up);
+            else if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
+                MovePlayer(Vector3.down);
+            else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+                MovePlayer(Vector3.left);
+            else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+                MovePlayer(Vector3.right);
+        
+        if (Input.GetKeyDown(KeyCode.Return) && !skip && !fader.fading)
+            Skip();
+        else if (Input.GetKeyDown("r"))
+            fader.Fade("SokobanGame");
+        else if (Input.GetKeyDown("escape"))
+        {
+            paused = !paused;
+            pauseWindow.SetActive(paused);
+        }
+
+        if (!paused)
+        {
+            time += Time.deltaTime;
+            GameObject.Find("text2").GetComponent<TextMeshPro>().text = time.ToString("N2");
+            var a = IntersceneInfo.sokoTime[IntersceneInfo.sokoNum];
+            GameObject.Find("text1").GetComponent<TextMeshPro>().text = Mathf.Max(0, Mathf.RoundToInt(a.Item1 * (1 - time / a.Item2))).ToString();
+        }
     }
 
     void CheckWin()
@@ -131,6 +172,24 @@ public class SokobanMain : MonoBehaviour
 
     void Win()
     {
-        SceneManager.LoadScene("PowerPointScene");
+        var a = IntersceneInfo.sokoTime[IntersceneInfo.sokoNum];
+        IntersceneInfo.sokoCoin += Mathf.Max(0, Mathf.RoundToInt(a.Item1 * (1 - time / a.Item2)));
+        IntersceneInfo.sokoNum++;
+        paused = true;
+        if (IntersceneInfo.sokoNum == IntersceneInfo.sokoTime.Length)
+            fader.Fade("PowerPointScene");
+        else
+            fader.Fade("SokobanGame");
+    }
+
+    void Skip()
+    {
+        skip = true;
+        IntersceneInfo.sokoNum++;
+        paused = true;
+        if (IntersceneInfo.sokoNum == IntersceneInfo.sokoTime.Length)
+            fader.Fade("PowerPointScene");
+        else
+            fader.Fade("SokobanGame");
     }
 }

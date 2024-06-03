@@ -20,6 +20,8 @@ public class DialogueHandler : MonoBehaviour
         ReadDialogue("dialogue" + (IntersceneInfo.dialogueNum + 1));
         dialogueBox.Write(dialogue[dialogueCounter].Phrase);
         pictureHandler.UpdatePicture(GetSprite(dialogue[dialogueCounter++].Picture));
+        GameObject.Find("music").GetComponent<AudioSource>().clip = Resources.Load<AudioClip>("Music/" + (IntersceneInfo.dialogueNum + 1) + "_dialogs");
+        GameObject.Find("music").GetComponent<AudioSource>().Play();
     }
 
     private Sprite GetSprite(string filename)

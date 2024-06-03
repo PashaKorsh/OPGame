@@ -6,12 +6,16 @@ using UnityEngine.SceneManagement;
 public class Fader : MonoBehaviour
 {
     public float fadeSpeed = 1f;
-    private bool fading;
+    public bool fading;
 
     void Start()
     {
         fading = false;
-        transform.localScale = new Vector3(Screen.width / 64, Screen.height / 64, 1);
+        transform.localScale = new Vector3(
+            Camera.main.orthographicSize * 200f * Camera.main.aspect / 64,
+            Camera.main.orthographicSize * 200f / 64,
+            1
+        );
     }
 
     public void Fade(string sceneName = "")
