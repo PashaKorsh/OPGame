@@ -1,9 +1,8 @@
 b   b   b   b
- m m m m m m 
-  b   b   b  
+ mbm mbm mbm 
 WW   M      W
    WMWW B BB 
 WMMW    W M  
 W  B  B W M W
-   W BWB  W  
-P  W  W     W
+  PW BWB  W  
+   W  W     W

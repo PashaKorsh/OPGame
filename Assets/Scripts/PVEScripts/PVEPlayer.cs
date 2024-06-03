@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class PVEPlayer : MonoBehaviour
 {
-    void FixedUpdate()
-    {
-        var dx = Input.GetAxis("Horizontal");
-        var dy = Input.GetAxis("Vertical");
+    // public Animator animator;
 
-        transform.position += new Vector3(dx, dy, 0) * 0.2f;// / Mathf.Sqrt(dx * dx + dy * dy);
-    }
+    // void Start()
+    // {
+    //     animator = GetComponent<Animator>();
+    // }
+
+    // void FixedUpdate()
+    // {
+    //     var dx = Input.GetAxis("Horizontal");
+    //     var dy = Input.GetAxis("Vertical");
+    //     transform.position += new Vector3(dx, dy, 0).normalized * Time.fixedDeltaTime * 10f;
+    //     animator.SetFloat("dx", -dx);
+    // }
 }
