@@ -23,7 +23,7 @@ public class MainMenuMain : MonoBehaviour
         if (index == 0)
             fader.Fade("PowerPointScene");
         else if (index == 1)
-            Application.Quit();
-            // fader.Fade("PVEGame");
+            // Application.Quit();
+            fader.Fade("PVEGame");
     }
 }

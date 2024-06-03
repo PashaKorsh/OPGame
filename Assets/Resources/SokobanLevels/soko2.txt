@@ -1,8 +1,9 @@
-WWWmmmmmWWW
-WWWbbbbbWWW
- M M M     
-      M  M 
- B  B  B   
-   B  B    
-    P      
-           
+b   b   b   b
+ m m m m m m 
+  b   b   b  
+WW   M      W
+   WMWW B BB 
+WMMW    W M  
+W  B  B W M W
+  PW BWB  W  
+   W  W     W

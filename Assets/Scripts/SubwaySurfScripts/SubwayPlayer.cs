@@ -18,6 +18,7 @@ public class SubwayPlayer : MonoBehaviour
     {
         if (collider.gameObject.tag == "coin")
         {
+            main.PlaySound("coins");
             IntersceneInfo.coinCount++;
             Destroy(collider.gameObject);
             return;

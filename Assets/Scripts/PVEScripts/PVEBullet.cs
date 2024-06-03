@@ -16,5 +16,7 @@ public class PVEBullet : MonoBehaviour
     void Update()
     {
         transform.position += direction * Time.deltaTime * speed;
+        if (Mathf.Abs(transform.position[0]) > 40f || Mathf.Abs(transform.position[1]) > 30f)
+            Destroy(gameObject);
     }
 }
