@@ -33,8 +33,27 @@ public class PVEBobr : MonoBehaviour
     {
         if (collision.collider.gameObject.name.Contains("bullet"))
         {
+            main.Spawn();
+            GameObject.Find("bobrpomer").GetComponent<AudioSource>().Play();
+            IntersceneInfo.pveCoin++;
             Destroy(collision.collider.gameObject);
             Destroy(gameObject);
+        }
+        else if (collision.collider.gameObject.name.Contains("player") && main.inwul < 0.1f)
+        {
+            GameObject.Find("bobrs").GetComponent<AudioSource>().Play();
+            main.inwul = 1f;
+            IntersceneInfo.pveCoin--;
+        }
+    }
+
+    void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.collider.gameObject.name.Contains("player") && main.inwul < 0.1f)
+        {
+            GameObject.Find("bobrs").GetComponent<AudioSource>().Play();
+            main.inwul = 1f;
+            IntersceneInfo.pveCoin--;
         }
     }
 }

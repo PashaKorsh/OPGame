@@ -26,6 +26,7 @@ public class FinishButton : MonoBehaviour
         IntersceneInfo.sokoNum = 0;
         IntersceneInfo.sokoCoin = 0;
         IntersceneInfo.sokoNeedInstruction = true;
+        IntersceneInfo.pveCoin = 0;
         GameObject.Find("fader").GetComponent<Fader>().Fade("MainMenuScene");
     }
 }

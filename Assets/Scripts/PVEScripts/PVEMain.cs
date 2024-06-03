@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -23,9 +24,12 @@ public class PVEMain : MonoBehaviour
     public TextMeshPro text1;
     public TextMeshPro text2;
     private float timer = 30f;
+    public float inwul = 0f;
+    private List<Transform> spawners;
 
     void Start()
     {
+        spawners = GameObject.Find("spawners").GetComponentsInChildren<Transform>().ToList();
         camOffset = new Vector2(
             field.transform.localScale[0] * field.GetComponent<SpriteRenderer>().sprite.rect.width / 200f - Screen.currentResolution.width / 200f,
             field.transform.localScale[1] * field.GetComponent<SpriteRenderer>().sprite.rect.height / 200f - Screen.currentResolution.height / 200f
@@ -53,6 +57,8 @@ public class PVEMain : MonoBehaviour
         }
         else
             Win();
+        text2.text = IntersceneInfo.pveCoin.ToString();
+        inwul -= Time.deltaTime;
 
         var dx = Input.GetAxis("Horizontal");
         var dy = Input.GetAxis("Vertical");
@@ -98,8 +104,19 @@ public class PVEMain : MonoBehaviour
         fader.Fade("PowerPointScene");
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    public void Spawn()
     {
-        Debug.Log(123);
+        while (true)
+        {
+            var a = spawners[Mathf.FloorToInt(Random.value * spawners.Count)];
+            if ((a.position - Camera.main.transform.position).sqrMagnitude > 225)
+            {
+                if (Random.value < 0.5f)
+                    Instantiate(Resources.Load<GameObject>("Prefabs/bobr1"), a.position, Quaternion.identity);
+                else
+                    Instantiate(Resources.Load<GameObject>("Prefabs/bobr2"), a.position, Quaternion.identity);
+                break;
+            }
+        }
     }
 }

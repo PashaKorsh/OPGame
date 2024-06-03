@@ -16,10 +16,10 @@ public class FinishMain : MonoBehaviour
     {
         GameObject.Find("text1").GetComponent<TextMeshPro>().text = IntersceneInfo.coinCount.ToString();
         GameObject.Find("text2").GetComponent<TextMeshPro>().text = IntersceneInfo.sokoCoin.ToString();
-        GameObject.Find("text3").GetComponent<TextMeshPro>().text = "52";
+        GameObject.Find("text3").GetComponent<TextMeshPro>().text = IntersceneInfo.pveCoin.ToString();
 
 
-        GameObject.Find("text4").GetComponent<TextMeshPro>().text = (IntersceneInfo.coinCount + IntersceneInfo.sokoCoin + 52).ToString();
+        GameObject.Find("text4").GetComponent<TextMeshPro>().text = (IntersceneInfo.coinCount + IntersceneInfo.sokoCoin + IntersceneInfo.pveCoin).ToString();
 
 
         time += Random.value * 2;

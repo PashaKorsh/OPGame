@@ -14,4 +14,6 @@ public static class IntersceneInfo
     public static (int, float)[] sokoTime = new (int, float)[] { (8, 10f), (16, 140f) };
     public static int sokoCoin = 0;
     public static bool sokoNeedInstruction = true;
+
+    public static int pveCoin = 0;
 }
